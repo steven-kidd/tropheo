@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.db.utils import IntegrityError
-from playstation.models import Game
+from tropheo.models import Game
 
 import os.path
 import json

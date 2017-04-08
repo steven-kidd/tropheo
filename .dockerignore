@@ -4,7 +4,6 @@
 *.pyc
 *.log
 
-logs/
 scripts/
 
 # Local Environment Variables

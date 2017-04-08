@@ -1,9 +1,9 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.db.utils import OperationalError
-from playstation.models import UserAgent, Game
+from trohpeo.models import UserAgent, Game
 
 from tropheo.settings import BASE_DIR
-from playstation.scrapers import MetaCriticScraper, TrophyScraper
+from trohpeo.scrapers import MetaCriticScraper, TrophyScraper
 
 import os.path
 import json

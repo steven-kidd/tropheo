@@ -1,12 +1,11 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.db.utils import OperationalError
-from playstation.models import UserAgent
+from tropheo.models import UserAgent
 
 from tropheo.settings import DATA_DIR
-from playstation.scrapers import MetaCriticScraper, TrophyScraper
+from tropheo.scrapers import MetaCriticScraper, TrophyScraper
 
 import os.path
-import json
 
 
 class Command(BaseCommand):
@@ -21,12 +20,12 @@ class Command(BaseCommand):
             user_agents = []
             with open(os.path.join(DATA_DIR, filename), 'r') as user_agent_file:
                 for user_agent in user_agent_file.readlines():
-                    if user_agent:
+                    if user_agent and user_agent not in current_user_agents:
                         user_agent = user_agent.strip()[1:-1-1]
-                        if user_agent not in current_user_agents:
+                        if user_agent not in current_user_agents: 
                             UserAgent.objects.create(user_agent=user_agent)
                             i += 1
         except Exception as err:
-            raise CommandError(err)
+            self.stderr.write(self.style.ERROR(CommandError(err)))
 
         self.stdout.write(self.style.SUCCESS('Successfully added %s new user agents to the database.' % i))

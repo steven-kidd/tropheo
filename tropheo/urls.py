@@ -14,9 +14,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
+from django.conf.urls.static import static
+from django.conf import settings
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
+import tropheo.views as views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^', include('playstation.urls')),
+    url(r'^accounts/', include('registration.backends.simple.urls')),
+    url(r'^accounts/update/$', views.UpdatePlayStationProfileView.as_view(), name='update_account'),
+    url(r'^$', views.IndexView.as_view(), name='home'),
+    url(r'^about/$', views.AboutView.as_view(), name='about'),
+    url(r'^g/$', views.GamePageView.as_view(), name='game'),
 ]

@@ -17,7 +17,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(BASE_DIR, 'data')
 LOG_DIR = os.path.join(BASE_DIR, 'logs')
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
@@ -31,16 +30,25 @@ for d in [DATA_DIR, LOG_DIR, PROJECT_DIR, STATIC_ROOT]:
 
 BOWER_COMPONENTS_ROOT = BASE_DIR#os.path.join(STATIC_ROOT, 'components')
 
-# Where to go after successful login?
+# Application Level Settings
 
-LOGIN_REDIRECT_URL = 'home'
+WSGI_APPLICATION = 'tropheo.wsgi.application'
 
-# Email SMTP Server / hack / workaround
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-# AUTHENTICATION_BACKENDS = ['playstation.backends.EmailBackend']
+ROOT_URLCONF = 'tropheo.urls'
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
+# Database
+# https://docs.djangoproject.com/en/1.10/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.environ.get('DATABASE_NAME', 'tropheo'),
+        'USER': os.environ.get('DATABASE_USERNAME', 'postgres'),
+        'PASSWORD': os.environ.get('DATABASE_PASSWORD', ''),
+        'HOST': os.environ.get('DATABASE_HOST', 'localhost'),
+        'PORT': os.environ.get('DATABASE_PORT', '5432')
+    }
+}
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY','totally_secret_key')
@@ -50,12 +58,16 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-# Registration Settings
-ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window;
-REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
+# Login / Registration Settings
 
-# Simple Registration Settings
+LOGIN_REDIRECT_URL = 'home' # go to url home after successful login.
+ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window.
+REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
 REGISTRATION_OPEN = True
+
+# Email SMTP Server / hack / workaround
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# AUTHENTICATION_BACKENDS = ['trohpeo.backends.EmailBackend']
 
 # Application definition
 
@@ -69,7 +81,7 @@ INSTALLED_APPS = [
     'djangobower',
     'django_nvd3',
     'bootstrap_pagination',
-    'playstation',
+    'tropheo'
 ]
 
 # Django extensions
@@ -91,13 +103,11 @@ BOWER_INSTALLED_APPS = (
     'nvd3',
 )
 
-
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'djangobower.finders.BowerFinder'
 ]
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -109,13 +119,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-
 # SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 # SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
 # SESSION_SAVE_EVERY_REQUEST = True
 SESSION_COOKIE_HTTPONLY = True
-
-ROOT_URLCONF = 'tropheo.urls'
 
 TEMPLATES = [
     {
@@ -133,22 +140,6 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'tropheo.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/1.10/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ.get('DATABASE_NAME', 'tropheo'),
-        'USER': os.environ.get('DATABASE_USERNAME', 'postgres'),
-        'PASSWORD': os.environ.get('DATABASE_PASSWORD', ''),
-        'HOST': os.environ.get('DATABASE_HOST', 'localhost'),
-        'PORT': os.environ.get('DATABASE_PORT', '5432')
-    }
-}
 
 # Caches
 # https://docs.djangoproject.com/en/dev/topics/cache/
@@ -177,42 +168,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
-# Logging
-# https://docs.djangoproject.com/en/1.10/topics/logging/
-
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': False,
-#     'formatters': {
-#         'verbose': {
-#             'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
-#         },
-#         'simple': {
-#             'format': '%(levelname)s %(message)s'
-#         }
-#     },
-#     'handlers': {
-#         'file': {
-#             'level': 'DEBUG',
-#             'class': 'logging.FileHandler',
-#             'filename': os.path.join(LOG_DIR, 'debug.log'),
-#             'formatter': 'verbose'
-#         },
-#         'console': {
-#             'class': 'logging.StreamHandler',
-#             'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
-#             'formatter': 'simple'
-#         }
-#     },
-#     'loggers': {
-#         'django': {
-#             'handlers': ['file', 'console'],
-#             'level': 'DEBUG',
-#             'propagate': True,
-#         },
-#     },
-# }
 
 
 # Internationalization
