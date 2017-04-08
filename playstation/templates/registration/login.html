@@ -1,0 +1,56 @@
+<!-- playstation/templates/login.html -->
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+
+<div class="container">
+
+    <div class="jumbotron text-center w-75 mx-auto">
+        <h1 class="pb-3 light">Login</h1>
+
+        <form method="post" class="form w-100" action="{% url 'auth_login' %}">
+            {% csrf_token %}
+
+            {% if form.errors %}
+                <div class='alert alert-danger'>
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            {% trans error|escape %}<br/>
+                        {% endfor %}
+                    {% endfor %}
+
+                    {% for error in form.non_field_errors %}
+                        {{ error|escape }}
+                    {% endfor %}
+
+                    {% for error in form.password.errors %}
+                        {{ error|escape }}
+                    {% endfor %}
+
+                </div>
+            {% endif %}
+
+            {% if next %}
+            <input type="hidden" name="next" value="{{ next }}" />
+            {% endif %}
+
+            <label class="sr-only" for="{{ form.username.name }}">{{ form.username.name }}</label>
+            <input class="form-control mt-1" type="text" name="{{ form.username.name }}" placeholder="Email/Username" id="{{ form.username.id_for_label }}" required>
+
+            <label class="sr-only" for="{{ form.password.name }}">{{ form.password.name }}</label>
+            <input class="form-control mt-1" type="password" name="{{ form.password.name }}" placeholder="Password" id="{{ form.password.id_for_label }}" required>
+
+            <div class="float-left checkbox my-2">
+                <label class="sr-only" for="remember-me">Remember Me</label>
+                <input type="checkbox" name="remember-me" value="remember-me"> {% trans "Remember me" %}
+            </div>
+
+            <button class="btn btn-primary btn-block mt-3" type="submit">{% trans "Login" %}</button>
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
+<!-- end playstation/templates/login.html -->

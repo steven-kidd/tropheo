@@ -1,0 +1,39 @@
+<!-- playstation/templates/games_divs.html -->
+{% load staticfiles %}
+{% load i18n %}
+{% block content %}
+
+    <div class="card-deck-wrapper">
+        <div class="card-deck">
+            {% for game in games %}
+            <div class="card card-block">
+                <img src="{{ game.image_url }}" class="img-fluid float-xs-left" alt="card image cap"/>
+                <div class="card-block">
+                    <span class="card-title" style="white-space: nowrap;">
+                        {{ game.title }} <span class="small">({{ game.platform }})</span>
+                        {% if game.platinum == 1 %}
+                        <img src="{% static 'img/platinum.png' %}" alt="Platinum Trophy" border=0 height=20 width=20 />
+                        {% endif %}
+                    </span><br/>
+                    <span class="small card-text">{{ game.release_date }}</span><br/>
+                    <span>
+                        <img src="{% static 'img/gold.png' %}" height=20 width=20 class="img-fluid"/>
+                        {{ game.gold }}
+                    </span>
+                    <span>
+                        <img src="{% static 'img/silver.png' %}" height=20 width=20 class="img-fluid"/>
+                        {{ game.silver }}
+                    </span>
+                    <span>
+                        <img src="{% static 'img/bronze.png' %}" height=20 width=20 class="img-fluid"/>
+                        {{ game.bronze }}
+                    </span></br/>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% include 'games_pagination.html' %}
+
+{% endblock %}

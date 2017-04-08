@@ -1,0 +1,16 @@
+<!-- playstation/templates/about.html -->
+{% extends "base.html" %}
+{% block content %}
+<div class="jumbotron container">
+    <h1>About Trophy Hunter</h1>
+    <p>
+    As an avid trophy hunter, I found myself often consulting between my playstation account trophies, various game rating sites, trophy blogs, and even a person Excel Spreadsheet I made for my hunt.  I found this all to be quite cumbersome and I decided to make a webapp that will help fellow trophy hunters find their prey.
+    </br>
+    </br>
+    The site uses the PlayStation API to find public trophy information, and compares it with a playstation game database built from various web sources.  Together, the app will recommend the next games for you to play, and as a member, it will maintain an up-to-date list of great PlayStation ripe with trophies.
+    </p>
+    <div class="text-center">
+        <a href="{% url 'home' %}"><button class="btn btn-large btn-primary">Use the app!</button></a>
+    </div>
+</div>
+{% endblock %}

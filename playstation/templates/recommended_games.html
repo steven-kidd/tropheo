@@ -1,0 +1,130 @@
+<!-- playstation/templates/games_divs.html -->
+{% load staticfiles %}
+{% load i18n %}
+{% load bootstrap_pagination %}
+{% block content %}
+
+<div class="container-fluid text-center">
+    <h2 class="recommended-games-title title">Recommended Games</h2>
+
+    {% if games %}
+
+    <div class="row">
+
+        {% for game in games %}
+
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="container">
+                    <div class="game-container row">
+
+                        <div class="game-image d-block float-left">
+                            <img src="{{ game.image_url }}" class="img"/>
+                        </div>
+
+                        <div class="game-details text-left">
+
+                            <div class="game-details-title">
+                                <span class="large hide-overflow">{{ game.title }}</span>
+                                <span class="small">({{ game.platform }})</span>
+                                {% if game.platinum == 1 %}
+                                <img src="{% static 'img/platinum.png' %}" alt="Platinum Trophy" class="img-fluid"/>
+                                {% endif %}
+                            </div>
+
+                            <div class="float-left small game-details-info">
+                                <div class="text-left">
+                                    <span>{{ game.release_date }}</span>
+                                    <br />
+                                    <span>
+                                        <img src="{% static 'img/gold.png' %}" class="img-fluid"/>
+                                        {{ game.gold }}
+                                    </span>
+                                    <span>
+                                        <img src="{% static 'img/silver.png' %}" class="img-fluid"/>
+                                        {{ game.silver }}
+                                    </span>
+                                    <span>
+                                        <img src="{% static 'img/bronze.png' %}" class="img-fluid"/>
+                                        {{ game.bronze }}
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+    <!-- pagination section -->
+    <div class="row pt-4">
+    <!--    <div class="d-block mx-auto">
+            {% bootstrap_paginate page_obj range=10 show_prev_next="true" show_first_last="false    " centered="true" %}
+        </div> -->
+        {% if is_paginated %}
+            <nav aria-label="Page navigation" class="d-block mx-auto">
+
+                <ul class="pagination">
+
+                    {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a href="?page={{ page_obj.previous_page_number }}" class="page-link" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">{% trans "Previous" %}</span>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="disabled page-item"><span class="page-link">&laquo;</span></li>
+                    {% endif %}
+
+                    {% for i in page_obj.paginator.page_range %}
+
+                        {% if i == page_obj.number %}
+                            <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+                        {% elif i == 1 or i == 2 %}
+                            <li class="page-item"><a href="?page={{ i }}" class="page-link">{{ i }}</a></li>
+                        {% elif i == page_obj.paginator.num_pages %}
+                            <li class="page-item"><a href="?page={{ i }}" class="page-link">{{ i }}</a></li>
+                        {% endif %}
+
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a href="?page={{ page_obj.next_page_number }}" class="page-link" aria-lable="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">{% trans "Next" %}</span>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="disabled page-item"><span class="page-link">&raquo;</span></li>
+                    {% endif %}
+
+                </ul>
+            </nav>
+        {% endif %}
+        <!-- end pagination section -->
+    </div>
+
+    {% else %}
+
+        <div class="row">
+            <div class="alert alert-warning mx-auto">
+                {% if user.profile.is_private %}
+                    <span>Your trophy data is set to private. [INCLUDE INFO TO SET TO PUBLIC]</span>
+                {% elif user.profile.is_empty %}
+                    <span>No data for your PlayStation ID.  Make sure you are using the correct ID.</span>
+                {% else %}
+                    <span>Sorry, no game data for your PlayStation ID.</span>
+                {% endif %}
+            </div>
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

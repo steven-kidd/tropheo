@@ -1,0 +1,80 @@
+<!-- playstation/templates/base.html -->
+<!DOCTYPE html>
+{% load i18n %}
+{% load staticfiles %}
+<html lang="en">
+
+    <!-- header code -->
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"  integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"> -->
+        <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'font-awesome/css/font-awesome.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/playstation.min.css' %}">
+        <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon-trophy.ico' %}"/>
+        <title>{% block title %}Tropheo - The Trophy Tracker{% endblock %}</title>
+    </head>
+    <!-- end header code -->
+
+    <!-- navbar code -->
+    <nav class="navbar navbar-toggleable-sm navbar-light bg-faded">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="{% url 'home' %}">Tropheo</a>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                {% if user.is_authenticated %}
+                <li class="nav-item dropdown px-1">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      &nbsp; {{ user.email }}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="{% url 'home' %}">Dashboard</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'update_account' %}">Settings</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'auth_logout' %}">Logout</a>
+                    </div>
+                </li>
+                {% elif user.is_anonymous %}
+                <li class="nav-item px-1">
+                   <a class="btn btn-outline-secondary nav-link" href="{% url 'auth_login' %}"><i class="fa fa-sign-in"></i>&nbsp;{% trans "Sign In" %}</a>
+                </li>
+
+                <li class="nav-item px-1">
+                    <a class="btn btn-outline-secondary nav-link" href="{% url 'registration_register' %}"><i class="fa fa-user-plus"></i>&nbsp;{% trans "Sign Up" %}</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <!-- end navbar code -->
+
+    <!-- body code -->
+    <body>
+        {% block content %}
+        {% endblock %}
+    </body>
+    <!-- end body code -->
+    
+    <!-- footer code -->
+    <footer class="sticky-bottom">
+        <div class="container text-right">
+            <p class="text-muted py-3 mb-0">&#169; 2017 William Graf</p>
+        </div>
+    </footer>
+    <!-- end footer code -->
+
+    <!-- javascripts -->
+    <script src="{% static 'jquery/dist/jquery.slim.min.js' %}"></script>
+    <script src="{% static 'tether/dist/js/tether.min.js' %}"></script>
+    <script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script> -->
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script> -->
+    <!-- end javascripts -->
+</html>
+<!-- end playstation/templates/base.html

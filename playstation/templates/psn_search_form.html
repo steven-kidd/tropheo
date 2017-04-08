@@ -1,0 +1,42 @@
+{% block content %}
+{% load i18n %}
+
+<div class="form-group">
+
+    <form action="{% url 'home' %}" method="post">
+        {% csrf_token %}
+
+        <div class="fieldWrapper input-group">
+            {{ form.username }}
+            <span class="input-group-btn">
+                <button class="btn btn-info btn-med" type="submit">
+                    <i class="fa fa-search"></i>
+                </button>
+            </span>
+        </div>
+
+        {% if messages %}
+        <div class="messages alert alert-danger">
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if form.username.errors %}
+        <div class='alert alert-danger'>
+            {% for error in form.username.errors %}  
+                {{ error|escape }}<br/>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <span class="small form-text">
+            {% trans "Enter your username to see your profile stats and game recommendations" %}
+        </span>
+        
+    </form>
+
+</div>
+
+{% endblock %}

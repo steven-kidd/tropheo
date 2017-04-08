@@ -1,0 +1,38 @@
+<!-- playstation/templates/update_profile.html -->
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+
+<div class="container">
+    <div class="jumbotron text-center">
+
+        <h1 class="pb-3 light">Update Profile</h1>
+
+        <form method="post" class="form w-50 mx-auto">
+            {% csrf_token %}
+
+            {% if form.errors %}
+            <div class='alert alert-danger'>
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        {% trans error|escape %}<br/>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {% if next %}
+            <input type="hidden" name="next" value="{{ next }}" />
+            {% endif %}
+
+            <label class="sr-only" for="{{ form.psn_id.name }}">{{ form.psn_id.name }}</label>
+            <input class="form-control mt-1" type="text" name="{{ form.psn_id.name }}" value="{{ user.psn_id }}" placeholder="PlayStation ID" id="{{ form.psn_id.id_for_label }}" required>
+
+            <button class="btn btn-primary btn-block mt-3" type="submit">{% trans "Update My PSN ID" %}</button>
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
+<!-- end playstation/templates/update_profile.html -->

@@ -1,0 +1,20 @@
+<!-- playstation/templates/login.html -->
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+
+<div class="container">
+
+    <div class="jumbotron text-center w-75 mx-auto">
+        <h1 class="pb-3 light">{% trans "Thank you" %}!</h1>
+
+        <div class="alert alert-success w-50 mx-auto">
+            <span class="lead">{% trans "You have been successfully logged out" %}</span>
+        </div>
+
+        <a class="btn btn-primary btn-lg" href="{% url 'home' %}">{% trans "Back to Home" %}</a>
+    </div>
+</div>
+
+{% endblock %}
+<!-- end playstation/templates/login.html -->

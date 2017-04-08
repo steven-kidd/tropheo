@@ -1,0 +1,45 @@
+<!-- playstation/templates/games_pagination.html -->
+{% load staticfiles %}
+{% load i18n %}
+{% block content %}
+
+{% if games.has_other_pages %}
+
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+
+        {% if games.has_previous %}
+            <li class="page-item">
+                <a href="?page={{ games.previous_page_number }}" class="page-link" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">{% trans "Previous" %}</span>
+                </a>
+            </li>
+        {% else %}
+            <li class="disabled page-item"><span class="page-link">&laquo;</span></li>
+        {% endif %}
+
+        {% for i in games.paginator.page_range %}
+            {% if games.number == i %}
+                <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+            {% else %}
+                <li class="page-item"><a href="?page={{ i }}" class="page-link">{{ i }}</a></li>
+            {% endif %}
+        {% endfor %}
+
+        {% if games.has_next %}
+            <li class="page-item">
+                <a href="?page={{ games.next_page_number }}" class="page-link" aria-lable="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">{% trans "Next" %}</span>
+                </a>
+            </li>
+        {% else %}
+        <li class="disabled page-item"><span>&raquo;</span></li>
+        {% endif %}
+    </ul>
+</nav>
+
+{% endif %}
+
+{% endblock %}

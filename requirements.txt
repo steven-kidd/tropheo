@@ -1,0 +1,10 @@
+requests
+django
+gunicorn
+python-dateutil
+django-ratelimit
+django-registration
+django-bower
+django_nvd3
+django-bootstrap-pagination
+psycopg2

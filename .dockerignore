@@ -1,0 +1,13 @@
+*.swp
+*.swo
+*.pyc
+*.log
+.ebextensions/
+logs/
+env/
+venv/
+
+tropheo/static/
+bower_components/
+
+fuckgenres.py

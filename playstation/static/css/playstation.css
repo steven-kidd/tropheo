@@ -1,0 +1,89 @@
+/*********************************************************************************/
+/*                         Globals & Media Queries                               */
+/*********************************************************************************/
+
+body > .container {
+    padding-top: 10vh;
+    min-height: 82.33vh;
+}
+.hide-overflow {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.light {
+    font-weight: 200;
+}
+
+/*********************************************************************************/
+/*                               Landing Page                                    */
+/*********************************************************************************/
+
+.hero {
+    padding-top: 5vh;
+    min-height: 90vh;
+}
+.hero h1 {
+    padding: 4% 0% 4% 0%;
+    font-size: 6rem;
+    font-weight: 200;
+}
+.hero h3 {
+    padding-bottom: 2rem;
+    font-size: 2.5rem;
+    font-weight: 200;
+}
+svg {
+    display: block;
+    margin: auto;
+}
+
+/*********************************************************************************/
+/*                             Registration Pages                                */
+/*********************************************************************************/
+
+
+/*********************************************************************************/
+/*                             User Profile Page                                 */
+/*********************************************************************************/
+
+/* User Info */
+.user-profile{
+}
+.user-profile h1 {
+    font-size: 3.8rem;
+    font-weight: 200;
+}
+.user-profile h3 {
+    font-size: 1.75rem;
+    font-weight: 200;
+}
+
+/* Recommended Games */
+
+.recommended-games-title {
+    font-size: 2.75rem;
+    font-weight: 200;
+}
+.game-container {
+    max-height: 100%;
+    min-height: 7em;
+    padding: 1.5em;
+    border: 1px;
+}
+.game-details-title img {
+    height: 20px;
+    width: 20px;
+}
+.game-details-info img {
+    height: 15px;
+    width: 15px;
+}
+
+/*********************************************************************************/
+/*                                   Footer                                      */
+/*********************************************************************************/
+
+footer {
+    background-color: #f3f3f3;
+}

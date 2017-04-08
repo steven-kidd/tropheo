@@ -1,0 +1,70 @@
+<!-- playstation/templates/landing_page.html -->
+{% load i18n %}
+{% block content %}
+<div class="container hero page-content">
+    <div class="container-fluid jumbotron hero-title">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1>{% trans "Track your trophies." %}<br/>{% trans "Find new games." %}</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-sm-6 text-sm-right text-center py-1">
+                <a class="btn btn-success btn-lg w-50" href="{% url 'registration_register' %}">{% trans "Sign Up" %}</a>
+            </div>
+            <div class="col-12 col-sm-6 text-sm-left text-center py-1">
+                <a class="btn btn-primary btn-lg  w-50" href="{% url 'auth_login' %}">{% trans "Sign in" %}</a>
+            </div>
+            <!-- <div class="mx-auto">
+                <form action="{% url 'home' %}" method="post" class="form">
+                    {% csrf_token %}
+                    <div class="input-group mx-auto">
+                        <div class="px-1">
+                            <button class="btn btn-info btn-lg" type="submit">{% trans "Sign Up" %}</button>
+                        </div>
+                        <label class="sr-only" for="inlineFormInput">PlayStation Network Username</label>
+                        {{ form.username }}
+                    </div>
+                    <br/>
+                    {% if form.username.errors %}
+                    <div class='alert alert-danger'>
+                        {% for error in form.username.errors %}  
+                            {% trans error|escape %}<br/>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </form>
+            </div> -->
+        </div>
+    </div>
+    <div class="container-fluid py-5">
+        <div class="row text-center">
+            <div class="col-12 col-sm-4">
+                <div class="hero-info-icon">
+                    <i class="fa fa-trophy fa-5x" aria-hidden="true"></i>
+                </div>
+                <div class="py-2">
+                    <span class="lead">Track Trophies</span>
+                </div>
+            </div>
+            <div class="col-12 col-sm-4">
+                <div class="hero-info-icon">
+                    <i class="fa fa-gamepad fa-5x" aria-hidden="true"></i>
+                </div>
+                <div class="py-2">
+                    <span class="lead">Discover Games</span>
+                </div>
+            </div>
+            <div class="col-12 col-sm-4">
+                <div class="hero-info-icon">
+                    <i class="fa fa-user-o fa-5x" aria-hidden="true"></i>
+                </div>
+                <div class="py-2">
+                    <span class="lead">Follow Friends</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+<!-- end playstation/templates/landing_page.html

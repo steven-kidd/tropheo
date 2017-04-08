@@ -1,0 +1,48 @@
+{% block content %}
+<form action="{% url 'home' %}" method="post" class="form-inline">
+    {% csrf_token %}
+
+    {% if messages %}
+    <div class="messages alert alert-danger">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="form-group">
+        <div class="fieldWrapper input-group">
+            {{ form.username }}
+            <span class="input-group-btn">
+                <button class="btn btn-info btn-lg" type="submit">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+            </span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="genre_filter">Genres</label>
+        <select class="form-control" id="genre_filter">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        {% for genre in genres %}
+        <div class="form-check">
+            <label class="form-check-label">
+                <input type="checkbox" class="form-check-input" id="{{ genre }}">
+                {{ genre }}
+            </label>
+        </div>
+        {% endfor %}
+    </div>
+
+</form>
+
+{% endblock %}

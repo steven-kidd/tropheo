@@ -1,0 +1,24 @@
+{% load static %}
+{% load i18n %}
+{% load nvd3_tags %}
+{% include_chart_jscss %}
+
+<div class="container">
+    <div class="row">
+        {% if genre_chart.chartcontainer %}
+            {% load_chart genre_chart.charttype genre_chart.chartdata genre_chart.chartcontainer genre_chart.extra %}
+            <div class="col-12 col-md-6">
+                <span class="lead d-block text-center mb-2">{% trans "Genres Played" %}</span>
+                {% include_container genre_chart.chartcontainer 500 370 %}
+            </div>
+        {% endif %}
+
+        {% if other_chart.chartcontainer %}
+            {% load_chart other_chart.charttype other_chart.chartdata other_chart.chartcontainer other_chart.extra %}
+            <div class="col-12 col-md-6">
+                <span class="lead d-block text-center mb-2">{% trans "Place Holder" %}</span>
+                {% include_container other_chart.chartcontainer 500 370 %}
+            </div>
+        {% endif %}
+    </div>
+</div>

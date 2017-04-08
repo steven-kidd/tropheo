@@ -1,0 +1,40 @@
+<!-- playstation/templates/games_table.html -->
+{% load staticfiles %}
+{% block content %}
+    
+    <table class="table table-responsive table-bordered mx-auto game-table">
+    
+        <thead class="thead-inverse">
+            <tr>
+                <th>Title</th>
+                <th>Score</th>
+                <th>Points</th>
+                <th>Platform</th>
+                <th>Golds</th>
+                <th>Silvers</th>
+                <th>Bronzes</th>
+            </tr>
+        </thead>
+        {% for game in games %}
+        <tr {% if game.simple_id in userdata.played_game_ids %}class="bg-success"{% endif %}> 
+            <th scope="row" style="white-space: nowrap;">
+                {{ game.title }}
+                {% if game.platinum == 1 %}
+                <img src="{% static 'img/platinum.png' %}" alt="Platinum Trophy" border=0 height=20 width=20 />
+                {% endif %}
+                <br/>
+                <span class="small">{{ game.release_date }}</span>
+            </th>
+            <td>{{ game.score }}</td>
+            <td>{{ game.points }}</td>
+            <td>{{ game.platform }}</td>
+            <td>{{ game.gold }}</td>
+            <td>{{ game.silver }}</td>
+            <td>{{ game.bronze }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+    {% include 'games_pagination.html' %}
+
+{% endblock %}

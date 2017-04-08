@@ -1,0 +1,61 @@
+<!-- playstation/templates/registration_form.html -->
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+
+<div class="container">
+    <div class="jumbotron text-center mx-auto w-75">
+        <h1 class="pb-3 light">{% trans "Registration" %}</h1>
+
+        <form method="post" class="form w-100">
+            {% csrf_token %}
+
+            {% if next %}
+                <input type="hidden" name="next" value="{{ next }}" />
+            {% endif %}
+
+            {% if form.errors %}
+            <div class='alert alert-danger'>
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        {% trans error|escape %}<br/>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+            {% endif %}
+
+
+            <label class="sr-only" for="{{ form.username.name }}">{{ form.username.name }}</label>
+            <input class="form-control mt-1" type="text" name="{{ form.username.name }}" placeholder="Username*" id="{{ form.username.id_for_label }}" required>
+
+            <label class="sr-only" for="email">email</label>
+            <input class="form-control mt-1" type="text" name="email" placeholder="Email*" id="id_email" required>
+
+            
+            <div class="row">
+                <div class="col-6">
+                    <label class="sr-only" for="first_name">first_name</label>
+                    <input class="form-control mt-1" type="text" name="first_name" placeholder="First Name" id="id_first_name">
+                </div>
+                <div class="col-6">
+                    <label class="sr-only" for="last_name">last_name</label>
+                    <input class="form-control mt-1" type="text" name="last_name" placeholder="Last Name" id="id_last_name">
+                </div>
+            </div>
+            
+
+            <label class="sr-only" for="{{ form.password1.name }}">{{ form.password1.name }}</label>
+            <input class="form-control mt-1" type="password" name="{{ form.password1.name }}" placeholder="Password*" id="{{ form.password1.id_for_label }}" required>
+                
+            <label class="sr-only" for="{{ form.password2.name }}">{{ form.password2.name }}</label>
+            <input class="form-control mt-1" type="password" name="{{ form.password2.name }}" placeholder="Confirm Password*" id="{{ form.password2.id_for_label }}" required>
+            
+            <button class="btn btn-primary btn-block mt-3" type="submit">{% trans "Sign Up" %}</button>
+            <span class="small">* is a required field</span>
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
+<!-- end playstation/templates/registration_form.html

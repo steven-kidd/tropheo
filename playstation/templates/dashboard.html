@@ -1,0 +1,67 @@
+<!-- playstation/templates/dashboard.html -->
+{% load staticfiles %}
+{% load i18n %}
+{% block content %}
+
+<div class="container user-profile">
+
+    {% if not user.profile.psn_id %}
+
+    <div class="container">
+        <div class="alert alert-danger" id="no-psn-id">
+            <div class="row">
+                <span class="text-center d-block mx-auto">It looks like you haven't set up your PlayStation ID.</span>
+            </div>
+            <div class="row">
+                <a class="btn btn-large btn-primary d-block mx-auto" href="{% url 'update_account' %}">Click here to fix it!</a>
+            </div>
+        </div>
+    </div>
+
+    {% endif %}
+
+    <div class="container">
+        <div class="row-fluid text-center" id="user-info">
+
+            {% if user.profile.avatar.strip %}
+            <img src="{{ user.profile.avatar }}" class="d-block mx-auto mw-100" alt="psn-avatar"/>
+            {% else %}
+            <img src="{% static 'img/missing_profile.png' %}" class="d-block mx-auto" alt="psn-avatar"/>
+            {% endif %}
+
+            <h1 class="mt-3 large">{{ user.profile.psn_id }}</h1>
+            <h3>
+                {% trans "Level" %} {{ user.profile.level }} <b> ~ </b> {{ user.profile.game_count }} {% trans "games played" %}
+            </h3>
+        </div>
+    </div>
+
+    <div class="container py-3">
+        <div class="row text-center" id="user-trophies">
+            <div class="col-12 col-sm-6 col-md-3">
+                <img src="{% static 'img/' %}platinum.png" alt="Platinum" class="d-block m-auto px-5 px-sm-0 img-fluid w-50"/>
+                <span class="lead"><p>{{ user.profile.platinum }}</p></span>
+            </div>
+            <div class="col-12 col-sm-6 col-md-3">
+                <img src="{% static 'img/' %}gold.png" alt="Gold" class="d-block m-auto px-5 px-sm-0 img-fluid w-50"/>
+                <span class="lead"><p>{{ user.profile.gold }}</p></span>
+            </div>
+            <div class="col-12 col-sm-6 col-md-3">
+                <img src="{% static 'img/' %}silver.png" alt="Silver" class="d-block m-auto px-5  px-sm-0 img-fluid w-50"/>
+                <span class="lead"><p>{{ user.profile.silver }}</p></span>
+            </div>
+            <div class="col-12 col-sm-6 col-md-3">
+                <img src="{% static 'img/' %}bronze.png" alt="Bronze" class="d-block m-auto px-5 px-sm-0 img-fluid w-50"/>
+                <span class="lead"><p>{{ user.profile.bronze }}</p></span>
+            </div>
+        </div>
+    </div>
+
+    {% include 'charts/genre_pie_chart.html' %}
+
+    {% include 'recommended_games.html' %}
+
+</div>
+
+{% endblock %}
+<!-- end playstation/templates/dashboard.html
