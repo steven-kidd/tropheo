@@ -14,7 +14,7 @@ env/
 venv/
 
 # Frontend Dependencies (CSS/JS/etc)
-tropheo/static/
+static_files/
 bower_components/
 
 .ebextensions/

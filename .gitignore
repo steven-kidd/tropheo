@@ -1,10 +1,10 @@
 # tropheo .gitignore file
 
 # Migrations & Django Data
-tropheo/migrations/
+tropheo/migrations/*
 *.sqlite3
-data/
-logs/
+data/*
+logs/*
 
 # Sandbox Scripts
 scripts/*
@@ -12,9 +12,7 @@ scripts/*
 
 # Frontend Dependencies (CSS/JS/etc)
 bower_components/
-tropheo/static/*
-!tropheo/static/css/
-!tropheo/static/img/
+static_files/
 
 # Elastic Beanstalk Files
 .ebextensions/

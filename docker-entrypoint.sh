@@ -3,7 +3,7 @@
 # move to app directory
 cd /usr/src/app
 
-# Set up local environment variables, if present
+# Set up local environment variables, if dot env file present
 source .env
 
 # Set up nginx configuration settings
@@ -22,7 +22,7 @@ python manage.py makemigrations
 python manage.py migrate
 
 # Build and collect static files
-python manage.py collectstatic --noinput
+python manage.py collectstatic --noinput --clear
 
 # Start gunicorn processes
 echo Starting Gunicorn.

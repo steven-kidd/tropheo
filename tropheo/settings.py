@@ -21,7 +21,7 @@ LOG_DIR = os.path.join(BASE_DIR, 'logs')
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_files')
 STATIC_URL = '/static/'
 
 for d in [DATA_DIR, LOG_DIR, PROJECT_DIR, STATIC_ROOT]:
@@ -104,8 +104,8 @@ BOWER_INSTALLED_APPS = (
 )
 
 STATICFILES_FINDERS = [
-    'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'django.contrib.staticfiles.finders.FileSystemFinder',
     'djangobower.finders.BowerFinder'
 ]
 
