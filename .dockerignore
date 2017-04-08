@@ -1,13 +1,21 @@
+.DS_Store
 *.swp
 *.swo
 *.pyc
 *.log
-.ebextensions/
+
 logs/
+scripts/
+
+# Local Environment Variables
+# .env
+
+# Python Dependencies
 env/
 venv/
 
+# Frontend Dependencies (CSS/JS/etc)
 tropheo/static/
 bower_components/
 
-fuckgenres.py
+.ebextensions/
