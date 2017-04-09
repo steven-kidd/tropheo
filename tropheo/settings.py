@@ -21,7 +21,7 @@ LOG_DIR = os.path.join(BASE_DIR, 'logs')
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_files')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
 for d in [DATA_DIR, LOG_DIR, PROJECT_DIR, STATIC_ROOT]:
@@ -50,11 +50,10 @@ DATABASES = {
     }
 }
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY','totally_secret_key')
+SECRET_KEY = os.environ.get('SECRET_KEY', 'totally_secret_key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 

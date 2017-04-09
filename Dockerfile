@@ -28,7 +28,7 @@ RUN npm install -g bower
 
 # Create app directory
 RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+WORKDIR /usr/src/app/
 
 # Install app python dependencies
 ADD requirements.txt .
@@ -38,7 +38,7 @@ RUN pip install -r requirements.txt
 ADD bower.json .
 RUN bower install --allow-root
 
-# Copy all application files into the image.
+# Copy application files into the image.
 ADD . .
 
 # Expose Django port

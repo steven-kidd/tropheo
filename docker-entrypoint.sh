@@ -1,7 +1,15 @@
 #!/bin/bash
 
 # move to app directory
-cd /usr/src/app
+# APP_DIR=/Users/Will/Projects/tropheo
+APP_DIR=/usr/src/app
+
+# Logging
+LOG_DIR=$APP_DIR/logs
+mkdir $LOG_DIR
+
+# Prepare log files and start outputting logs to stdout
+touch $LOG_DIR/gunicorn.log $LOG_DIR/access.log
 
 # Set up local environment variables, if dot env file present
 source .env
@@ -11,10 +19,9 @@ cp ./django_nginx.conf /etc/nginx/sites-available/
 ln -s /etc/nginx/sites-available/django_nginx.conf /etc/nginx/sites-enabled/
 echo "daemon off;" >> /etc/nginx/nginx.conf
 
-# Prepare log files and start outputting logs to stdout
-touch /usr/src/app/logs/gunicorn.log
-touch /usr/src/app/logs/access.log
-tail -n 0 -f /usr/src/app/logs/*.log &
+cd $APP_DIR
+
+tail -n 0 -f $LOG_DIR/*.log &
 echo Starting nginx
 
 # Apply database migrations
@@ -28,11 +35,10 @@ python manage.py collectstatic --noinput --clear
 echo Starting Gunicorn.
 exec gunicorn tropheo.wsgi:application \
     --name tropheo \
-    --bind unix:/usr/src/app/tropheo/tropheo.sock \
-    # --bind 0.0.0.0:8000 \
+    --bind unix:$APP_DIR/tropheo.sock \
     --workers 3 \
-    --log-level=info \
+    --log-level=debug \
     --timeout 300 \
-    --log-file=/usr/src/app/logs/gunicorn.log \
-    --access-logfile=/usr/src/app/logs/access.log & 
+    --log-file=$LOG_DIR/gunicorn.log \
+    --access-logfile=$LOG_DIR/access.log & 
 exec service nginx start

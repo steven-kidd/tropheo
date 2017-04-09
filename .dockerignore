@@ -4,17 +4,13 @@
 *.pyc
 *.log
 
+logs/
 scripts/
-
-# Local Environment Variables
-# .env
 
 # Python Dependencies
 env/
 venv/
 
 # Frontend Dependencies (CSS/JS/etc)
-static_files/
+static/
 bower_components/
-
-.ebextensions/
