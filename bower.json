@@ -1,9 +1,9 @@
 {
   "name": "tropheo",
   "authors": [
-    "William Graf <github.com/willgraf>"
+    "willgraf <github.com/willgraf>"
   ],
-  "description": "",
+  "description": "PSN Trophy Tracker",
   "main": "manage.py",
   "keywords": [
     "django",
@@ -21,6 +21,8 @@
     "test",
     "tests",
     "data",
+    "scripts",
+    "static",
     "env",
     "logs",
     ".ebextensions",
