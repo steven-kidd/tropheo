@@ -55,7 +55,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'totally_secret_key')
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['.willgraf.com', os.environ.get('ENV_URL'), 'localhost']
 
 # Login / Registration Settings
 
