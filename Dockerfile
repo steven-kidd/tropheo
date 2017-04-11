@@ -19,8 +19,7 @@ RUN apt-get update && apt-get install -y \
     nginx \
     python \
     python-dev \
-    python-pip \
-    python-virtualenv
+    python-pip
 
 # Install bower
 RUN npm install -g bower
@@ -44,6 +43,6 @@ COPY . .
 RUN python ./manage.py collectstatic --noinput --clear
 
 # Expose Django port
-# EXPOSE 8000 # Do I even need this? nginx is already listening inside the container
+EXPOSE 80
 
 ENTRYPOINT ["./docker-entrypoint.sh"]
