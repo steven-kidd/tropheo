@@ -17,7 +17,6 @@ RUN apt-get update && apt-get install -y \
     git \
     vim \
     nginx \
-    libmysqlclient-dev \
     python \
     python-dev \
     python-pip \
@@ -27,21 +26,24 @@ RUN apt-get update && apt-get install -y \
 RUN npm install -g bower
 
 # Create app directory
-RUN mkdir -p /usr/src/app
+RUN mkdir -p /usr/src/app/tropheo
 WORKDIR /usr/src/app/
 
 # Install app python dependencies
-ADD requirements.txt .
+COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 # just install with bower for faster images
-ADD bower.json .
+COPY bower.json .
 RUN bower install --allow-root
 
-# Copy application files into the image.
-ADD . .
+# Copy application files
+COPY . .
+
+# Collect static files
+RUN python ./manage.py collectstatic --noinput --clear
 
 # Expose Django port
-EXPOSE 8000
+# EXPOSE 8000 # Do I even need this? nginx is already listening inside the container
 
 ENTRYPOINT ["./docker-entrypoint.sh"]
