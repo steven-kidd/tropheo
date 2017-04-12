@@ -14,8 +14,3 @@ venv/
 # Frontend Dependencies (CSS/JS/etc)
 static/
 bower_components/
-
-# Ignore all example or unused config files
-.ebextensions/*
-!.ebextensions/*.config
-
