@@ -16,6 +16,7 @@ static_files/
 
 # Elastic Beanstalk Files
 .ebextensions/*
+!.ebextensions/*.example
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
