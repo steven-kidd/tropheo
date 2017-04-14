@@ -19,7 +19,7 @@ tail -n 0 -f $LOG_DIR/*.log &
 echo Performing database migration.
 
 # Apply database migrations
-python $APP_DIR/manage.py migrate
+# python $APP_DIR/manage.py migrate
 
 # Start gunicorn processes
 echo Starting Gunicorn and nginx.
