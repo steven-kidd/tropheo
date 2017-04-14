@@ -14,10 +14,11 @@ ENV DJANGO_PRODUCTION true
 # Update and install packages
 RUN apt-get update && apt-get install -y \
     build-essential \
+    ca-certificates \
+    ssh \
     git \
     vim \
     nginx \
-    python \
     python-dev \
     python-pip
 
@@ -25,7 +26,7 @@ RUN apt-get update && apt-get install -y \
 RUN npm install -g bower
 
 # Create app directory
-RUN mkdir -p /usr/src/app/tropheo
+RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app/
 
 # Install app python dependencies
@@ -39,7 +40,7 @@ RUN bower install --allow-root
 # Copy application files
 COPY . .
 
-# Collect static files
+# Collect static files, also makes log folder
 RUN python ./manage.py collectstatic --noinput --clear
 
 # Expose Django port
