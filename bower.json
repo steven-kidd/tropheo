@@ -33,6 +33,6 @@
     "bootstrap": "#v4.0.0-alpha.6",
     "font-awesome": "latest",
     "underscore": "latest",
-    "nvd3": "latest"
+    "nvd3": "#1.8.1"
   }
 }
