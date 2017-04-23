@@ -33,7 +33,7 @@ WORKDIR /usr/src/app/
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-# just install with bower for faster images
+# Just install with bower for faster images
 COPY bower.json .
 RUN bower install --allow-root
 

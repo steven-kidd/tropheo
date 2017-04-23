@@ -14,15 +14,15 @@ echo "daemon off;" >> /etc/nginx/nginx.conf
 
 # ip=`awk '/django/ {print $1; exit}' /etc/hosts`; sed -i "s//$ip/g" /etc/nginx/nginx.conf
 
+# Apply database migrations
+echo Performing database migration.
+python $APP_DIR/manage.py makemigrations
+python $APP_DIR/manage.py migrate
+
 # start outputting logs to stdout
 tail -n 0 -f $LOG_DIR/*.log &
-echo Performing database migration.
-
-# Apply database migrations
-# python $APP_DIR/manage.py migrate
-
 # Start gunicorn processes
-echo Starting Gunicorn and nginx.
+echo Starting Gunicorn and nginx. &
 exec gunicorn tropheo.wsgi:application \
     --name tropheo \
     --bind unix:$APP_DIR/tropheo.sock \

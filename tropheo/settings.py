@@ -100,7 +100,7 @@ BOWER_INSTALLED_APPS = (
     'jquery',
     'tether',
     'underscore',
-    'nvd3',
+    'nvd3#1.8.1',
 )
 
 STATICFILES_FINDERS = [
