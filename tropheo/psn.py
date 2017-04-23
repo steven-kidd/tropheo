@@ -18,6 +18,7 @@ class PlayStationProfile(object):
         game_data = psn_user_data.get('list', [])
         self.games = self._parse_games(game_data)
         self.game_count = len(self.games)
+        self.average_completion = round(sum([int(g['progress']) for g in self.games]) / float(len(self.games)), 2)
 
         trophies = self._parse_trophies(game_data) # self.games double counts games across platforms.
         self.trophies = trophies
@@ -96,12 +97,6 @@ class PlayStationProfile(object):
     #     print('GET %s %s' % (response.status_code, response.url))
     #     return response.json()
 
-    def _parse_key(self, key, data, default):
-        if key in data:
-            return data[key]
-        else:
-            return default
-
     def _parse_games(self, game_list):
         parsed_games = []
         for g in game_list:
@@ -113,6 +108,7 @@ class PlayStationProfile(object):
                     'trophies': g['trophies'],
                     'progress': g['progress'],
                     'image_url': g['imgUrl'],
+                    'progress': g['progress'],
                     'id': ''.join(e.lower() for e in g['title'] if e.isalnum()) + platform,
                     'simple_id': ''.join(e.lower() for e in g['title'] if e.isalnum())
                 })

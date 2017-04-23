@@ -103,6 +103,7 @@ class Profile(models.Model):
     bronze = models.IntegerField(default=0)
     is_private = models.BooleanField(default=False)
     is_empty = models.BooleanField(default=True)
+    average_completion = models.FloatField(default=0)
     played_games = models.ManyToManyField(Ngame)
 
 

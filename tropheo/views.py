@@ -31,6 +31,9 @@ class IndexView(ListView):
     paginate_orphans = 3
 
     def get_queryset(self, **kwargs):
+        if not self.request.user.is_authenticated():
+            # Don't query DB if landing page.
+            return []
         queryset = Ngame.objects.all()
         try:
             played_game_ids = self.request.user.profile._get_played_game_ids()
@@ -173,6 +176,7 @@ class UpdatePlayStationProfileView(LoginRequiredMixin, FormView):
             instance.profile.bronze = psn_user_data.bronze
             instance.profile.is_private = psn_user_data.is_private
             instance.profile.is_empty = psn_user_data.is_empty
+            instance.profile.average_completion = psn_user_data.average_completion
 
             instance.save()
             games = Ngame.objects.filter(pk__in=psn_user_data.played_ids)
