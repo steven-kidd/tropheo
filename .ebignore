@@ -6,6 +6,7 @@
 
 logs/
 scripts/
+data/
 
 # Python Dependencies
 env/
