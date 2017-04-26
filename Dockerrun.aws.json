@@ -5,6 +5,5 @@
        "ContainerPort": "80"
      }
    ],
-   "Volumes": [],
-   "Logging": "/var/log"
+   "Volumes": []
 }
