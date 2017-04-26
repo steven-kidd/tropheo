@@ -1,18 +1,20 @@
+# Python & OSX Files
 .DS_Store
 *.swp
 *.swo
 *.pyc
 *.log
 
+# Development Files
+data/
 logs/
 scripts/
-data/
 
 # Python Dependencies
 env/
 venv/
 .env
 
-# Frontend Dependencies (CSS/JS/etc)
+# Generated Frontend Dependencies (CSS/JS/etc)
 /static/
 /bower_components/

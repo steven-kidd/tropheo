@@ -10,7 +10,7 @@ logs/*
 scripts/*
 !scripts/dbviews.sql
 
-# Frontend Dependencies (CSS/JS/etc; top level files are generated)
+# Generated Frontend Dependencies (CSS/JS/etc)
 /bower_components/
 /static_files/
 

@@ -1,9 +1,11 @@
+# Python & OSX Files
 .DS_Store
 *.swp
 *.swo
 *.pyc
 *.log
 
+# Development Files
 data/
 logs/
 scripts/
