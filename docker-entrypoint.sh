@@ -17,7 +17,6 @@ echo Performing database migration.
 python $APP_DIR/manage.py makemigrations
 python $APP_DIR/manage.py migrate
 
-
 # Start outputting logs to stdout
 tail -n 0 -f $LOG_DIR/*.log &
 # Start gunicorn processes
