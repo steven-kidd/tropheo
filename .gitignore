@@ -10,9 +10,9 @@ logs/*
 scripts/*
 !scripts/dbviews.sql
 
-# Frontend Dependencies (CSS/JS/etc)
-bower_components/
-static_files/
+# Frontend Dependencies (CSS/JS/etc; top level files are generated)
+/bower_components/
+/static_files/
 
 # Elastic Beanstalk Files
 .ebextensions/*

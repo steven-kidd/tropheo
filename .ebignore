@@ -14,5 +14,5 @@ venv/
 .env
 
 # Frontend Dependencies (CSS/JS/etc)
-static/
-bower_components/
+/static/
+/bower_components/
