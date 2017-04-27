@@ -1,0 +1,6 @@
+option_settings:
+  aws:elb:listener:443:
+    ListenerProtocol: HTTPS
+    SSLCertificateId: your-ssl-certificate-arn
+    InstancePort: 80
+    InstanceProtocol: HTTP
