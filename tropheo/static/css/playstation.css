@@ -14,6 +14,9 @@ body > .container {
 .light {
     font-weight: 200;
 }
+.text-justify {
+    text-align: justify;
+}
 
 /*********************************************************************************/
 /*                               Landing Page                                    */
